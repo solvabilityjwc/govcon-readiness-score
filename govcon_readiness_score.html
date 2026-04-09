@@ -47,6 +47,7 @@
   .option.selected { border-color: var(--teal); background: var(--teal-bg); }
   .option input[type="radio"] { accent-color: var(--teal); width: 16px; height: 16px; flex-shrink: 0; }
   .option-text { font-size: 13px; color: var(--dark); }
+  .option input[type="radio"] { pointer-events: none; }
 
   /* Score options 0/1/2 */
   .score-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -321,8 +322,10 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Add click handlers for option styling
 document.querySelectorAll('.option').forEach(function(opt) {
-  opt.addEventListener('click', function() {
-    var name = this.querySelector('input').name;
+  opt.addEventListener('click', function(e) {
+    var input = this.querySelector('input');
+    input.checked = true;
+    var name = input.name;
     document.querySelectorAll('input[name="' + name + '"]').forEach(function(inp) {
       inp.closest('.option').classList.remove('selected');
     });
