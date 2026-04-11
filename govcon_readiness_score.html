@@ -141,12 +141,12 @@
 
       <div class="question" id="q-stmts">
         <div class="question-num">Question 2 of 13</div>
-        <div class="question-label">Do you currently have up-to-date financial statements (Profit &amp; Loss and Balance Sheet)?</div>
+        <div class="question-label">What accounting system are you currently using?</div>
         <div class="options">
-          <label class="option"><input type="radio" name="statements" value="yes-monthly"> <span class="option-text">Yes, updated monthly</span></label>
-          <label class="option"><input type="radio" name="statements" value="yes-behind"> <span class="option-text">Yes, but behind</span></label>
-          <label class="option"><input type="radio" name="statements" value="no"> <span class="option-text">No</span></label>
-          <label class="option"><input type="radio" name="statements" value="unsure"> <span class="option-text">I'm not sure</span></label>
+          <label class="option"><input type="radio" name="statements" value="qbo"> <span class="option-text">QuickBooks</span></label>
+          <label class="option"><input type="radio" name="statements" value="erp"> <span class="option-text">Costpoint or Unanet</span></label>
+          <label class="option"><input type="radio" name="statements" value="sheets"> <span class="option-text">Spreadsheets</span></label>
+          <label class="option"><input type="radio" name="statements" value="other"> <span class="option-text">Other</span></label>
         </div>
       </div>
 
@@ -154,11 +154,11 @@
         <div class="question-num">Question 3 of 13</div>
         <div class="question-label">What is your biggest financial frustration right now?</div>
         <div class="options">
-          <label class="option"><input type="radio" name="frustration" value="cash"> <span class="option-text">I don't know where my cash is going</span></label>
-          <label class="option"><input type="radio" name="frustration" value="profit"> <span class="option-text">I can't tell if I'm profitable</span></label>
-          <label class="option"><input type="radio" name="frustration" value="books"> <span class="option-text">I'm behind on bookkeeping</span></label>
-          <label class="option"><input type="radio" name="frustration" value="growth"> <span class="option-text">I need help preparing for growth</span></label>
-          <label class="option"><input type="radio" name="frustration" value="bidding"> <span class="option-text">I want better systems before bidding larger contracts</span></label>
+          <label class="option"><input type="radio" name="frustration" value="profit"> <span class="option-text">Not knowing if I'm profitable</span></label>
+          <label class="option"><input type="radio" name="frustration" value="cashflow"> <span class="option-text">Cash flow unpredictability</span></label>
+          <label class="option"><input type="radio" name="frustration" value="numbers"> <span class="option-text">Not understanding my numbers</span></label>
+          <label class="option"><input type="radio" name="frustration" value="pricing"> <span class="option-text">Pricing contracts correctly</span></label>
+          <label class="option"><input type="radio" name="frustration" value="all"> <span class="option-text">All of the above</span></label>
         </div>
       </div>
 
@@ -175,107 +175,123 @@
         <div class="card-header-sub">For each question: 0 = No &nbsp;|&nbsp; 1 = Somewhat &nbsp;|&nbsp; 2 = Yes / Consistently</div>
       </div>
 
-      <!-- Cash Control -->
+      <!-- Owner Compensation -->
       <div class="question">
-        <div class="question-num">Question 4 of 13 — Cash Control</div>
-        <div class="question-label">Can you run payroll without checking your bank balance first?</div>
-        <div class="score-options">
-          <label class="score-opt"><input type="radio" name="s1" value="0"><div class="score-val">0</div><div class="score-desc">No</div></label>
-          <label class="score-opt"><input type="radio" name="s1" value="1"><div class="score-val">1</div><div class="score-desc">Somewhat</div></label>
-          <label class="score-opt"><input type="radio" name="s1" value="2"><div class="score-val">2</div><div class="score-desc">Yes</div></label>
+        <div class="question-num">Question 4 of 13 — Owner Compensation</div>
+        <div class="question-label">Are you paying yourself what you deserve?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="s1" value="2"> <span class="option-text">Yes, I pay myself a consistent salary</span></label>
+          <label class="option"><input type="radio" name="s1" value="1"> <span class="option-text">Sometimes, when cash allows</span></label>
+          <label class="option"><input type="radio" name="s1" value="1"> <span class="option-text">Rarely — I always take care of the business first</span></label>
+          <label class="option"><input type="radio" name="s1" value="0"> <span class="option-text">No, I haven't paid myself yet</span></label>
         </div>
       </div>
 
+      <!-- Tax Planning -->
       <div class="question">
-        <div class="question-num">Question 5 of 13 — Cash Control</div>
-        <div class="question-label">Do you have at least 1 month of operating cash cushion?</div>
-        <div class="score-options">
-          <label class="score-opt"><input type="radio" name="s2" value="0"><div class="score-val">0</div><div class="score-desc">No</div></label>
-          <label class="score-opt"><input type="radio" name="s2" value="1"><div class="score-val">1</div><div class="score-desc">Somewhat</div></label>
-          <label class="score-opt"><input type="radio" name="s2" value="2"><div class="score-val">2</div><div class="score-desc">Yes</div></label>
+        <div class="question-num">Question 5 of 13 — Tax Planning</div>
+        <div class="question-label">Does your IRS tax bill wipe out your cash?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="s2" value="2"> <span class="option-text">No, I set aside taxes throughout the year</span></label>
+          <label class="option"><input type="radio" name="s2" value="1"> <span class="option-text">Sometimes it's a stretch but I manage</span></label>
+          <label class="option"><input type="radio" name="s2" value="0"> <span class="option-text">Yes, tax time is always a cash crisis</span></label>
+          <label class="option"><input type="radio" name="s2" value="0"> <span class="option-text">I let my accountant handle it and hope for the best</span></label>
         </div>
       </div>
 
-      <!-- Financial Visibility -->
+      <!-- Cash Flow -->
       <div class="question">
-        <div class="question-num">Question 6 of 13 — Financial Visibility</div>
-        <div class="question-label">Are your Profit &amp; Loss and Balance Sheet updated monthly?</div>
-        <div class="score-options">
-          <label class="score-opt"><input type="radio" name="s3" value="0"><div class="score-val">0</div><div class="score-desc">No</div></label>
-          <label class="score-opt"><input type="radio" name="s3" value="1"><div class="score-val">1</div><div class="score-desc">Somewhat</div></label>
-          <label class="score-opt"><input type="radio" name="s3" value="2"><div class="score-val">2</div><div class="score-desc">Yes</div></label>
+        <div class="question-num">Question 6 of 13 — Cash Flow</div>
+        <div class="question-label">Ever had delays in customer payments impact your cash flow?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="s3" value="2"> <span class="option-text">No, when payments are delayed we just use the line of credit</span></label>
+          <label class="option"><input type="radio" name="s3" value="1"> <span class="option-text">Yes, we've had late payments but we had adequate cash available</span></label>
+          <label class="option"><input type="radio" name="s3" value="0"> <span class="option-text">When we got paid late, we just delayed other payments</span></label>
+          <label class="option"><input type="radio" name="s3" value="0"> <span class="option-text">We haven't had late payments and it worries me that it could happen</span></label>
         </div>
       </div>
 
+      <!-- Banking -->
       <div class="question">
-        <div class="question-num">Question 7 of 13 — Financial Visibility</div>
-        <div class="question-label">Can you explain your profit margin without looking at reports?</div>
-        <div class="score-options">
-          <label class="score-opt"><input type="radio" name="s4" value="0"><div class="score-val">0</div><div class="score-desc">No</div></label>
-          <label class="score-opt"><input type="radio" name="s4" value="1"><div class="score-val">1</div><div class="score-desc">Somewhat</div></label>
-          <label class="score-opt"><input type="radio" name="s4" value="2"><div class="score-val">2</div><div class="score-desc">Yes</div></label>
+        <div class="question-num">Question 7 of 13 — Banking</div>
+        <div class="question-label">Can you call your banker today and get your line of credit increased?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="s4" value="2"> <span class="option-text">Yes, approved — my banker knows my business</span></label>
+          <label class="option"><input type="radio" name="s4" value="1"> <span class="option-text">Probably not — my banker doesn't really understand federal contracting</span></label>
+          <label class="option"><input type="radio" name="s4" value="0"> <span class="option-text">I've been meaning to set one up but haven't yet</span></label>
+          <label class="option"><input type="radio" name="s4" value="0"> <span class="option-text">I don't have a dedicated business banker who understands federal contracting</span></label>
         </div>
       </div>
 
-      <!-- Systems -->
+      <!-- Indirect Rates -->
       <div class="question">
-        <div class="question-num">Question 8 of 13 — Systems</div>
-        <div class="question-label">Is QuickBooks reconciled monthly?</div>
-        <div class="score-options">
-          <label class="score-opt"><input type="radio" name="s5" value="0"><div class="score-val">0</div><div class="score-desc">No</div></label>
-          <label class="score-opt"><input type="radio" name="s5" value="1"><div class="score-val">1</div><div class="score-desc">Somewhat</div></label>
-          <label class="score-opt"><input type="radio" name="s5" value="2"><div class="score-val">2</div><div class="score-desc">Yes</div></label>
+        <div class="question-num">Question 8 of 13 — Indirect Rates</div>
+        <div class="question-label">Do you know your indirect rate structure (Fringe, Overhead, G&amp;A)?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="s5" value="2"> <span class="option-text">Yes, I calculate and monitor my rates regularly</span></label>
+          <label class="option"><input type="radio" name="s5" value="1"> <span class="option-text">Somewhat — I know the concept but not my actual numbers</span></label>
+          <label class="option"><input type="radio" name="s5" value="0"> <span class="option-text">No, I've heard the terms but don't know my rates</span></label>
+          <label class="option"><input type="radio" name="s5" value="0"> <span class="option-text">I don't know what indirect rates are</span></label>
         </div>
       </div>
 
+      <!-- Pricing -->
       <div class="question">
-        <div class="question-num">Question 9 of 13 — Systems</div>
-        <div class="question-label">Do you review financial statements at least once per month?</div>
-        <div class="score-options">
-          <label class="score-opt"><input type="radio" name="s6" value="0"><div class="score-val">0</div><div class="score-desc">No</div></label>
-          <label class="score-opt"><input type="radio" name="s6" value="1"><div class="score-val">1</div><div class="score-desc">Somewhat</div></label>
-          <label class="score-opt"><input type="radio" name="s6" value="2"><div class="score-val">2</div><div class="score-desc">Yes</div></label>
+        <div class="question-num">Question 9 of 13 — Pricing</div>
+        <div class="question-label">When you submit a bid, are you confident that all your costs are covered?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="s6" value="2"> <span class="option-text">Yes, I know my full cost before I price</span></label>
+          <label class="option"><input type="radio" name="s6" value="1"> <span class="option-text">Sometimes — I estimate and hope for the best</span></label>
+          <label class="option"><input type="radio" name="s6" value="0"> <span class="option-text">No, I base pricing on what the market will bear</span></label>
+          <label class="option"><input type="radio" name="s6" value="0"> <span class="option-text">I don't know how to calculate my full cost</span></label>
+        </div>
+      </div>
+
+      <!-- Contract Tracking -->
+      <div class="question">
+        <div class="question-num">Question 10 of 13 — Contract Tracking</div>
+        <div class="question-label">Do you have an Active Contract Listing with values, dates and labor categories?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="s7" value="2"> <span class="option-text">Yes, fully up to date</span></label>
+          <label class="option"><input type="radio" name="s7" value="1"> <span class="option-text">Partially — some contracts are tracked</span></label>
+          <label class="option"><input type="radio" name="s7" value="0"> <span class="option-text">No, haven't had time to set that up</span></label>
+          <label class="option"><input type="radio" name="s7" value="0"> <span class="option-text">I don't know what I need to track</span></label>
+        </div>
+      </div>
+
+      <!-- Pipeline -->
+      <div class="question">
+        <div class="question-num">Question 11 of 13 — Pipeline</div>
+        <div class="question-label">How do you track your pipeline and expected contract awards?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="s8" value="2"> <span class="option-text">I have a formal pipeline tracker that I update regularly</span></label>
+          <label class="option"><input type="radio" name="s8" value="1"> <span class="option-text">I keep track in my head or in emails</span></label>
+          <label class="option"><input type="radio" name="s8" value="0"> <span class="option-text">I have a spreadsheet but it's not up to date</span></label>
+          <label class="option"><input type="radio" name="s8" value="0"> <span class="option-text">I don't have a pipeline process yet</span></label>
+        </div>
+      </div>
+
+      <!-- Project Profitability -->
+      <div class="question">
+        <div class="question-num">Question 12 of 13 — Project Profitability</div>
+        <div class="question-label">Do you track costs and revenue by individual contract to know if each one is profitable?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="s9" value="2"> <span class="option-text">Yes, I review project costs and revenue by contract regularly</span></label>
+          <label class="option"><input type="radio" name="s9" value="1"> <span class="option-text">No, I only look at overall Profit and Loss</span></label>
+          <label class="option"><input type="radio" name="s9" value="0"> <span class="option-text">I don't know how to track by contract</span></label>
+          <label class="option"><input type="radio" name="s9" value="0"> <span class="option-text">I didn't know I needed to</span></label>
         </div>
       </div>
 
       <!-- Growth Readiness -->
       <div class="question">
-        <div class="question-num">Question 10 of 13 — Growth Readiness</div>
-        <div class="question-label">Do you know your indirect rate structure (Fringe, Overhead, G&amp;A)?</div>
-        <div class="score-options">
-          <label class="score-opt"><input type="radio" name="s7" value="0"><div class="score-val">0</div><div class="score-desc">No</div></label>
-          <label class="score-opt"><input type="radio" name="s7" value="1"><div class="score-val">1</div><div class="score-desc">Somewhat</div></label>
-          <label class="score-opt"><input type="radio" name="s7" value="2"><div class="score-val">2</div><div class="score-desc">Yes</div></label>
-        </div>
-      </div>
-
-      <div class="question">
-        <div class="question-num">Question 11 of 13 — Growth Readiness</div>
-        <div class="question-label">Do you price contracts with full cost visibility?</div>
-        <div class="score-options">
-          <label class="score-opt"><input type="radio" name="s8" value="0"><div class="score-val">0</div><div class="score-desc">No</div></label>
-          <label class="score-opt"><input type="radio" name="s8" value="1"><div class="score-val">1</div><div class="score-desc">Somewhat</div></label>
-          <label class="score-opt"><input type="radio" name="s8" value="2"><div class="score-val">2</div><div class="score-desc">Yes</div></label>
-        </div>
-      </div>
-
-      <div class="question">
-        <div class="question-num">Question 12 of 13 — Growth Readiness</div>
-        <div class="question-label">Can you forecast revenue 90 days forward?</div>
-        <div class="score-options">
-          <label class="score-opt"><input type="radio" name="s9" value="0"><div class="score-val">0</div><div class="score-desc">No</div></label>
-          <label class="score-opt"><input type="radio" name="s9" value="1"><div class="score-val">1</div><div class="score-desc">Somewhat</div></label>
-          <label class="score-opt"><input type="radio" name="s9" value="2"><div class="score-val">2</div><div class="score-desc">Yes</div></label>
-        </div>
-      </div>
-
-      <div class="question">
         <div class="question-num">Question 13 of 13 — Growth Readiness</div>
-        <div class="question-label">Do delayed payments create operational stress for your business?</div>
-        <div class="score-options">
-          <label class="score-opt"><input type="radio" name="s10" value="0"><div class="score-val">0</div><div class="score-desc">Always</div></label>
-          <label class="score-opt"><input type="radio" name="s10" value="1"><div class="score-val">1</div><div class="score-desc">Sometimes</div></label>
-          <label class="score-opt"><input type="radio" name="s10" value="2"><div class="score-val">2</div><div class="score-desc">Rarely</div></label>
+        <div class="question-label">If your business grew 30% this year, would your finances be ready to handle it?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="s10" value="2"> <span class="option-text">Yes, I have a financial plan that supports growth</span></label>
+          <label class="option"><input type="radio" name="s10" value="1"> <span class="option-text">Probably not — I haven't mapped it out</span></label>
+          <label class="option"><input type="radio" name="s10" value="0"> <span class="option-text">I'm not planning to grow that fast</span></label>
+          <label class="option"><input type="radio" name="s10" value="0"> <span class="option-text">I don't know what financial readiness for growth looks like</span></label>
         </div>
       </div>
 
@@ -457,11 +473,4 @@ function showResults() {
   });
 
   document.getElementById('section-score').classList.remove('active');
-  document.getElementById('section-results').classList.add('active');
-  document.getElementById('progress').style.width = '100%';
-  document.getElementById('progress-label').textContent = 'Assessment complete';
-  window.scrollTo(0, 0);
-}
-</script>
-</body>
-</html>
+  document.getEle
