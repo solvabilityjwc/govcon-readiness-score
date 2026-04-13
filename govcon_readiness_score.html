@@ -87,7 +87,7 @@
 <body>
 <div class="page">
   <div class="header-wrap">
-    <div style="font-size:10px;color:#a8b8cc;text-align:right;padding-right:4px;">v26.001</div>
+    <div style="font-size:10px;color:#a8b8cc;text-align:right;padding-right:4px;">v26.002</div>
     <div class="logo-row">
       <div class="logo-bar"></div>
       <div class="logo-text">Solvability</div>
@@ -304,7 +304,7 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+function attachHandlers() {
 document.querySelectorAll('.option').forEach(function(opt) {
   opt.addEventListener('click', function() {
     var input = this.querySelector('input[type="radio"]');
@@ -428,7 +428,8 @@ function showResults() {
   document.getElementById('progress-label').textContent = 'Assessment complete';
   window.scrollTo(0, 0);
 }
-});
+}
+document.addEventListener("DOMContentLoaded", attachHandlers);
 </script>
 </body>
 </html>
