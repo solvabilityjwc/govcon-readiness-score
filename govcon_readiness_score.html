@@ -37,13 +37,6 @@
     .option.selected { border-color: var(--teal); background: var(--teal-bg); }
     .option input[type="radio"] { accent-color: var(--teal); width: 16px; height: 16px; flex-shrink: 0; pointer-events: none; }
     .option-text { font-size: 13px; color: var(--dark); }
-    .score-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .score-opt { border: 1.5px solid var(--light); border-radius: 8px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.15s; background: var(--white); }
-    .score-opt:hover { border-color: var(--teal); background: var(--teal-bg); }
-    .score-opt.selected { border-color: var(--teal); background: var(--teal-bg); }
-    .score-opt input[type="radio"] { display: none; }
-    .score-val { font-size: 18px; font-weight: 700; color: var(--navy); }
-    .score-desc { font-size: 11px; color: var(--mid); margin-top: 2px; }
     .error-msg { font-size: 12px; color: var(--fog); margin-top: 0.5rem; display: none; }
     .error-msg.show { display: block; }
     .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; transition: all 0.15s; }
@@ -87,7 +80,7 @@
 <body>
 <div class="page">
   <div class="header-wrap">
-    <div style="font-size:10px;color:#a8b8cc;text-align:right;padding-right:4px;">v26.002</div>
+    <div style="font-size:10px;color:#a8b8cc;text-align:right;padding-right:4px;">v27.001</div>
     <div class="logo-row">
       <div class="logo-bar"></div>
       <div class="logo-text">Solvability</div>
@@ -142,7 +135,7 @@
       </div>
 
       <div class="error-msg" id="err-qualify">Please answer all 3 questions before continuing.</div>
-      <button class="btn btn-primary" onclick="nextSection('qualify')">Continue →</button>
+      <button class="btn btn-primary" onclick="nextSection()">Continue →</button>
     </div>
   </div>
 
@@ -151,7 +144,7 @@
     <div class="card">
       <div class="card-header">
         <div class="card-header-title">Financial Readiness Assessment</div>
-        <div class="card-header-sub">For each question: 0 = No &nbsp;|&nbsp; 1 = Somewhat &nbsp;|&nbsp; 2 = Yes / Consistently</div>
+        <div class="card-header-sub">10 questions — select the answer that best describes your situation today</div>
       </div>
 
       <div class="question">
@@ -271,7 +264,7 @@
 
   <!-- SECTION 3: Results -->
   <div class="section" id="section-results">
-    <div class="result-header tier-unstable" id="result-header">
+    <div class="result-header" id="result-header">
       <div class="result-score-num" id="result-score">0</div>
       <div class="result-score-label">out of 20</div>
       <div class="result-tier-label" id="result-tier"></div>
@@ -279,7 +272,7 @@
     <div class="card">
       <div class="card-header-title" style="margin-bottom:0.75rem;">What this means for you</div>
       <p class="result-meaning" id="result-meaning"></p>
-      <ul class="result-actions" id="result-actions"></ul>
+      <ul class="result-actions" id="result-actions" style="margin-top:0.75rem;"></ul>
     </div>
     <div class="cta-box">
       <h3>Stop Guessing. Start Knowing.</h3>
@@ -289,55 +282,58 @@
       <a href="https://solvabilityjwc.github.io/clarity-session/clarity_offer.html" target="_blank">
         <button class="btn btn-cta">Book My Clarity Session →</button>
       </a>
-      <div style="margin-top:1rem;font-size:12px;color:var(--silver);">Or text Jenny at 256-882-6276 to get started today.</div>
     </div>
-    <div style="text-align:center;margin-top:1rem;margin-bottom:2rem;">
+    <div style="text-align:center;margin-top:0.5rem;margin-bottom:0.5rem;font-size:13px;color:var(--mid);">— or —</div>
+    <div style="text-align:center;margin-bottom:2rem;">
       <a href="https://api.growthhub365.com/widget/bookings/free-discovery-call-all" target="_blank">
-        <button class="btn" style="background:var(--teal-bg);color:var(--teal);border:1.5px solid var(--teal);font-size:13px;">Schedule your 15 Minute Discovery Call</button>
+        <button class="btn" style="background:var(--teal-bg);color:var(--teal);border:1.5px solid var(--teal);font-size:13px;padding:12px 24px;">Schedule a Free 15-Minute Discovery Call</button>
       </a>
+      <div style="margin-top:0.75rem;font-size:12px;color:var(--silver);">Or text Jenny at 256-882-6276 to get started today.</div>
     </div>
   </div>
 
   <div class="footer">
-    &copy; 2026 Solvability LLC &nbsp;|&nbsp; <a href="https://solvability.com">solvability.com</a> &nbsp;|&nbsp; <a href="mailto:jenny@solvability.com">jenny@solvability.com</a>
+    &copy; 2026 Solvability LLC &nbsp;|&nbsp; <a href="https://solvability.com">solvability.com</a>
   </div>
 </div>
 
 <script>
-function attachHandlers() {
-document.querySelectorAll('.option').forEach(function(opt) {
-  opt.addEventListener('click', function() {
-    var input = this.querySelector('input[type="radio"]');
-    input.checked = true;
-    var name = input.name;
-    document.querySelectorAll('input[name="' + name + '"]').forEach(function(inp) {
-      inp.closest('.option').classList.remove('selected');
+  // Attach click handlers to all .option labels
+  document.querySelectorAll('.option').forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      var input = this.querySelector('input[type="radio"]');
+      if (!input) return;
+      input.checked = true;
+      // Deselect siblings
+      document.querySelectorAll('input[name="' + input.name + '"]').forEach(function(inp) {
+        inp.closest('.option').classList.remove('selected');
+      });
+      this.classList.add('selected');
+      updateProgress();
     });
-    this.classList.add('selected');
-    updateProgress();
   });
-});
 
-function updateProgress() {
-  var answered = 0;
-  var names = ['revenue','accounting','frustration','s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
-  names.forEach(function(n) {
-    if (document.querySelector('input[name="' + n + '"]:checked')) answered++;
-  });
-  var pct = Math.round((answered / 13) * 100);
-  document.getElementById('progress').style.width = pct + '%';
-  var section = document.querySelector('.section.active').id;
-  if (section === 'section-qualify') {
-    document.getElementById('progress-label').textContent = 'Question ' + Math.min(answered + 1, 3) + ' of 13';
-  } else if (section === 'section-score') {
-    document.getElementById('progress-label').textContent = 'Question ' + Math.min(answered + 1, 13) + ' of 13';
+  function updateProgress() {
+    var names = ['revenue','accounting','frustration','s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
+    var answered = 0;
+    names.forEach(function(n) {
+      if (document.querySelector('input[name="' + n + '"]:checked')) answered++;
+    });
+    var pct = Math.round((answered / 13) * 100);
+    document.getElementById('progress').style.width = pct + '%';
+    var activeSection = document.querySelector('.section.active').id;
+    if (activeSection === 'section-qualify') {
+      var q = Math.min(answered + 1, 3);
+      document.getElementById('progress-label').textContent = 'Question ' + q + ' of 13';
+    } else if (activeSection === 'section-score') {
+      var q = Math.min(answered + 1, 13);
+      document.getElementById('progress-label').textContent = 'Question ' + q + ' of 13';
+    }
   }
-}
 
-function nextSection(from) {
-  if (from === 'qualify') {
-    var rev = document.querySelector('input[name="revenue"]:checked');
-    var acc = document.querySelector('input[name="accounting"]:checked');
+  function nextSection() {
+    var rev  = document.querySelector('input[name="revenue"]:checked');
+    var acc  = document.querySelector('input[name="accounting"]:checked');
     var frus = document.querySelector('input[name="frustration"]:checked');
     if (!rev || !acc || !frus) {
       document.getElementById('err-qualify').classList.add('show');
@@ -349,87 +345,95 @@ function nextSection(from) {
     document.getElementById('progress-label').textContent = 'Question 4 of 13';
     window.scrollTo(0, 0);
   }
-}
 
-function showResults() {
-  var names = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
-  var allAnswered = true;
-  var total = 0;
-  names.forEach(function(n) {
-    var checked = document.querySelector('input[name="' + n + '"]:checked');
-    if (!checked) { allAnswered = false; }
-    else { total += parseInt(checked.value); }
-  });
-  if (!allAnswered) {
-    document.getElementById('err-score').classList.add('show');
-    return;
+  function showResults() {
+    var scoreNames = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
+    var allAnswered = true;
+    var total = 0;
+    scoreNames.forEach(function(n) {
+      var checked = document.querySelector('input[name="' + n + '"]:checked');
+      if (!checked) {
+        allAnswered = false;
+      } else {
+        total += parseInt(checked.value, 10);
+      }
+    });
+    if (!allAnswered) {
+      document.getElementById('err-score').classList.add('show');
+      return;
+    }
+    document.getElementById('err-score').classList.remove('show');
+
+    // Score 0–20: tiers at 0–6, 7–12, 13–17, 18–20
+    var tier, tierClass, meaning, actions;
+    if (total <= 6) {
+      tier      = 'Financial Fog';
+      tierClass = 'tier-fog';
+      meaning   = 'You are operating without clear financial visibility. At this stage, growth increases risk rather than reducing it. The good news: this is exactly the kind of situation Financial Clarity was designed for.';
+      actions   = [
+        'Get your books current and reconciled',
+        'Separate your personal and business finances completely',
+        'Start tracking cash weekly — not monthly',
+        'Book a Financial Clarity Session to build your roadmap'
+      ];
+    } else if (total <= 12) {
+      tier      = 'Unstable Foundation';
+      tierClass = 'tier-unstable';
+      meaning   = 'You have revenue movement but your financial systems are not fully protecting you yet. You may be making decisions without complete information — which creates hidden risk as you grow.';
+      actions   = [
+        'Establish a monthly close process in QuickBooks',
+        'Separate overhead and G&A in your chart of accounts',
+        'Build a 90-day cash forecast',
+        'Book a Financial Clarity Session to identify your biggest gaps'
+      ];
+    } else if (total <= 17) {
+      tier      = 'Structured but Stretched';
+      tierClass = 'tier-stretched';
+      meaning   = 'You have financial structure in place but visibility gaps may be limiting confident growth decisions. You are closer than you think — a targeted clarity session could unlock the next level.';
+      actions   = [
+        'Refine your indirect rate calculations for bidding accuracy',
+        'Tighten your 90-day cash forecast',
+        'Review margin by contract to identify compression',
+        'Book a Financial Clarity Session to sharpen your strategy'
+      ];
+    } else {
+      tier      = 'Growth Ready';
+      tierClass = 'tier-ready';
+      meaning   = 'You have strong financial structure and visibility. You are positioned to scale with confidence. The next step is strategic oversight to ensure growth does not outpace your financial systems.';
+      actions   = [
+        'Consider CFO Advisory for forward-looking strategic oversight',
+        'Implement pricing discipline across all bid categories',
+        'Build a hiring decision model tied to indirect rate impact',
+        'Reach out to discuss CFO Advisory at solvability.com'
+      ];
+    }
+
+    // Populate results
+    document.getElementById('result-score').textContent = total;
+    document.getElementById('result-tier').textContent  = tier;
+    var header = document.getElementById('result-header');
+    header.className = 'result-header ' + tierClass;
+
+    document.getElementById('result-meaning').textContent = meaning;
+
+    var ul = document.getElementById('result-actions');
+    ul.innerHTML = '';
+    actions.forEach(function(a) {
+      var li = document.createElement('li');
+      li.textContent = a;
+      ul.appendChild(li);
+    });
+
+    // Switch sections
+    document.getElementById('section-score').classList.remove('active');
+    document.getElementById('section-results').classList.add('active');
+
+    // Update progress to 100%
+    document.getElementById('progress').style.width = '100%';
+    document.getElementById('progress-label').textContent = 'Assessment Complete';
+
+    window.scrollTo(0, 0);
   }
-  document.getElementById('err-score').classList.remove('show');
-
-  var tier, tierClass, meaning, actions;
-  if (total <= 6) {
-    tier = 'Financial Fog';
-    tierClass = 'tier-fog';
-    meaning = 'You are operating without clear financial visibility. At this stage, growth increases risk rather than reducing it. The good news: this is exactly the kind of situation Financial Clarity was designed for.';
-    actions = [
-      'Get your books current and reconciled',
-      'Separate your personal and business finances completely',
-      'Start tracking cash weekly — not monthly',
-      'Book a Financial Clarity Session to build your roadmap'
-    ];
-  } else if (total <= 12) {
-    tier = 'Unstable Foundation';
-    tierClass = 'tier-unstable';
-    meaning = 'You have revenue movement but your financial systems are not fully protecting you yet. You may be making decisions without complete information — which creates hidden risk as you grow.';
-    actions = [
-      'Establish a monthly close process in QuickBooks',
-      'Separate overhead and G&A in your chart of accounts',
-      'Build a 90-day cash forecast',
-      'Book a Financial Clarity Session to identify your biggest gaps'
-    ];
-  } else if (total <= 17) {
-    tier = 'Structured but Stretched';
-    tierClass = 'tier-stretched';
-    meaning = 'You have financial structure in place but visibility gaps may be limiting confident growth decisions. You are closer than you think — a targeted clarity session could unlock the next level.';
-    actions = [
-      'Refine your indirect rate calculations for bidding accuracy',
-      'Tighten your 90-day cash forecast',
-      'Review margin by contract to identify compression',
-      'Book a Financial Clarity Session to sharpen your strategy'
-    ];
-  } else {
-    tier = 'Growth Ready';
-    tierClass = 'tier-ready';
-    meaning = 'You have strong financial structure and visibility. You are positioned to scale with confidence. The next step is strategic oversight to ensure growth does not outpace your financial systems.';
-    actions = [
-      'Consider CFO Advisory for forward-looking strategic oversight',
-      'Implement pricing discipline across all bid categories',
-      'Build a hiring decision model tied to indirect rate impact',
-      'Reach out to discuss CFO Advisory at solvability.com'
-    ];
-  }
-
-  document.getElementById('result-score').textContent = total;
-  document.getElementById('result-tier').textContent = tier;
-  document.getElementById('result-header').className = 'result-header ' + tierClass;
-  document.getElementById('result-meaning').textContent = meaning;
-
-  var ul = document.getElementById('result-actions');
-  ul.innerHTML = '';
-  actions.forEach(function(a) {
-    var li = document.createElement('li');
-    li.textContent = a;
-    ul.appendChild(li);
-  });
-
-  document.getElementById('section-score').classList.remove('active');
-  document.getElementById('section-results').classList.add('active');
-  document.getElementById('progress').style.width = '100%';
-  document.getElementById('progress-label').textContent = 'Assessment complete';
-  window.scrollTo(0, 0);
-}
-}
-document.addEventListener("DOMContentLoaded", attachHandlers);
 </script>
 </body>
 </html>
