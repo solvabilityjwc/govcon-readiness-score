@@ -464,13 +464,4 @@ function showResults() {
   document.getElementById('result-header').className = 'result-header ' + tierClass;
   document.getElementById('result-meaning').textContent = meaning;
 
-  var ul = document.getElementById('result-actions');
-  ul.innerHTML = '';
-  actions.forEach(function(a) {
-    var li = document.createElement('li');
-    li.textContent = a;
-    ul.appendChild(li);
-  });
-
-  document.getElementById('section-score').classList.remove('active');
-  document.getEle
+  var ul = document.getElementById('result-act
